@@ -1,0 +1,41 @@
+create database if not exists RegistroEntrada character set utf8mb4;
+
+create table if not exists Registro (
+Id int not null auto_increment,
+DataHora datetime not null,
+primary key(Id)
+);
+
+create table if not exists Prestador (
+Id int not null auto_increment,
+Nome varchar(50) not null,
+CPF varchar(14) not null,
+Empresa varchar(50) not null,
+CNPJ varchar(18) not null,
+Autonomo boolean not null,
+primary key(Id)
+);
+
+create table if not exists Condomino (
+Id int not null auto_increment,
+Nome varchar(50) not null,
+Apartamento int not null,
+Bloco varchar(10) not null,
+Condominio boolean not null,
+primary key(Id)
+);
+
+create table if not exists RegistroPrestador (
+IdRegistro int not null,
+IdPrestador int not null,
+foreign key(IdRegistro) references Registro(Id),
+foreign key(IdPrestador) references Prestador(Id)
+);
+
+create table if not exists RegistroCondomino (
+IdRegistro int not null,
+IdCondomino int not null,
+foreign key(IdRegistro) references Registro(Id),
+foreign key (IdCondomino) references Condomino(Id)
+);
+
