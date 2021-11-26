@@ -1,41 +1,75 @@
 create database if not exists RegistroEntrada character set utf8mb4;
 
-create table if not exists Registro (
-Id int not null auto_increment,
-DataHora datetime not null,
-primary key(Id)
+CREATE TABLE if not exists Registro (
+Id int auto_increment PRIMARY KEY,
+DataHora datetime not null
 );
 
-create table if not exists Prestador (
-Id int not null auto_increment,
-Nome varchar(50) not null,
+CREATE TABLE if not exists Correio (
+Id int auto_increment PRIMARY KEY
+);
+
+CREATE TABLE if not exists Entregador (
+Id int auto_increment PRIMARY KEY,
+Nome varchar(100) not null,
+Empresa varchar(50) not null
+);
+
+CREATE TABLE if not exists Condomino (
+Id int auto_increment PRIMARY KEY,
+Nome varchar(100) not null,
+Apartamento int not null,
+Bloco varchar(10) not null,
+Condominio boolean not null
+);
+
+CREATE TABLE if not exists Prestador (
+Id int auto_increment PRIMARY KEY,
+Nome varchar(100) not null,
 CPF varchar(14) not null,
 Empresa varchar(50) not null,
 CNPJ varchar(18) not null,
-Autonomo boolean not null,
-primary key(Id)
+Autonomo boolean not null
 );
 
-create table if not exists Condomino (
-Id int not null auto_increment,
-Nome varchar(50) not null,
-Apartamento int not null,
-Bloco varchar(10) not null,
-Condominio boolean not null,
-primary key(Id)
+CREATE TABLE if not exists Visitante (
+Id int auto_increment PRIMARY KEY,
+Nome varchar(100) not null
 );
 
-create table if not exists RegistroPrestador (
+CREATE TABLE if not exists RegistroCorreio (
+IdCorreio int not null,
 IdRegistro int not null,
-IdPrestador int not null,
-foreign key(IdRegistro) references Registro(Id),
-foreign key(IdPrestador) references Prestador(Id)
+FOREIGN KEY(IdCorreio) REFERENCES Correio (Id),
+FOREIGN KEY(IdRegistro) REFERENCES Registro (Id)
 );
 
-create table if not exists RegistroCondomino (
+CREATE TABLE if not exists RegistroEntregador (
+IdEntregador int not null,
+IdRegistro int not null,
+FOREIGN KEY(IdEntregador) REFERENCES Entregador (Id),
+FOREIGN KEY(IdRegistro) REFERENCES Registro (Id)
+);
+
+CREATE TABLE if not exists RegistroCondomino (
 IdRegistro int not null,
 IdCondomino int not null,
-foreign key(IdRegistro) references Registro(Id),
-foreign key (IdCondomino) references Condomino(Id)
+FOREIGN KEY(IdRegistro) REFERENCES Registro (Id),
+FOREIGN KEY(IdCondomino) REFERENCES Condomino (Id)
 );
+
+CREATE TABLE if not exists RegistroPrestador (
+IdRegistro int not null,
+IdPrestador int not null,
+FOREIGN KEY(IdRegistro) REFERENCES Registro (Id),
+FOREIGN KEY(IdPrestador) REFERENCES Prestador (Id)
+);
+
+CREATE TABLE if not exists RegistroVisitante (
+IdRegistro int not null,
+IdVisitante int not null,
+FOREIGN KEY(IdRegistro) REFERENCES Registro (Id),
+FOREIGN KEY(IdVisitante) REFERENCES Visitante (Id)
+);
+
 

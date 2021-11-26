@@ -3,6 +3,7 @@ package com.br.presentation.prestador;
 import com.br.model.condomino.Condomino;
 import com.br.model.prestador.Prestador;
 import com.br.model.registro.Registro;
+import com.br.presentation.entregador.EntregadorGUI;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -75,20 +76,25 @@ public class PrestadorGUI extends JFrame {
         CriarPrestador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "CriarPrestador");
+                new PrestadorGUI();
+
+                dispose();
             }
         });
 
         CriarEntregador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "CriarEntregador");
+                new EntregadorGUI();
+
+                dispose();
             }
         });
 
         CriarVisitante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 JOptionPane.showMessageDialog(null, "CriarVisitante");
             }
         });
