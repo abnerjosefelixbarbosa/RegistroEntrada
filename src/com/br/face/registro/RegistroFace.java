@@ -9,3 +9,5 @@ public interface RegistroFace {
     public String CriarCorreio(Registro Registro);
     public String CriarCondomino(Registro Registro);
 }
+
+

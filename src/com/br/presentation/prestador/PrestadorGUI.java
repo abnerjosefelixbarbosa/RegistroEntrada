@@ -1,5 +1,6 @@
 package com.br.presentation.prestador;
 
+import com.br.business.registro.RegistroRule;
 import com.br.model.condomino.Condomino;
 import com.br.model.prestador.Prestador;
 import com.br.model.registro.Registro;
@@ -50,11 +51,13 @@ public class PrestadorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    var Registro = new Registro();
-                    var Prestador1 = new Prestador();
-                    var Condomino1 = new Condomino();
-                    var data = new Date(System.currentTimeMillis());
-                    Registro.setDataHora(data);
+                    Registro Registro = new Registro();
+                    Prestador Prestador1 = new Prestador();
+                    Condomino Condomino1 = new Condomino();
+                    RegistroRule RegistroRule = new RegistroRule();
+                    Date Data = new Date(System.currentTimeMillis());
+
+                    Registro.setDataHora(Data);
                     Prestador1.setNome(Prestador.getText());
                     Prestador1.setCPF(CPF.getText());
                     Prestador1.setEmpresa(Empresa.getText());
@@ -66,6 +69,16 @@ public class PrestadorGUI extends JFrame {
                     Condomino1.setCondominio(Condominio.isSelected());
                     Registro.setPrestador(Prestador1);
                     Registro.setCondomino(Condomino1);
+                    String Resultado = RegistroRule.CriarPrestador(Registro);
+                    String Resultado1 = RegistroRule.CriarCondomino(Registro);
+
+                    if (!Resultado.equals("")) {
+                        JOptionPane.showMessageDialog(null, Resultado, "Error", 0);
+                    } else if (!Resultado1.equals("")) {
+                        JOptionPane.showMessageDialog(null, Resultado1, "Error", 0);
+                    } else  {
+                        JOptionPane.showMessageDialog(null, "Prestador cadastrado!", "Mensagem", 1);
+                    }
                 } catch (Exception Ex) {
                     JOptionPane.showMessageDialog(null, Ex.getMessage(), "Error", 0);
                     Apartamento.setText("0");
