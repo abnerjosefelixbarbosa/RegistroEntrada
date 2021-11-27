@@ -1,5 +1,5 @@
-package com.br.business.prestador;
+package com.br.business.registro;
 
-public class PrestadorRule {
+public class RegistroRule {
 
 }

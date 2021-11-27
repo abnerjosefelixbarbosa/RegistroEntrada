@@ -1,2 +1,4 @@
-package com.br.business.condomino;public class CondominoRule {
+package com.br.business.validarcondomino;
+
+public class CondominoRule {
 }

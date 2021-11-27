@@ -1,6 +1,8 @@
 package com.br.presentation.entregador;
 
+import com.br.presentation.correio.CorreioGUI;
 import com.br.presentation.prestador.PrestadorGUI;
+import com.br.presentation.visitante.VisitanteGUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,7 @@ public class EntregadorGUI extends  JFrame{
         setLocationRelativeTo(null);
         setVisible(true);
         Menu();
+        Cadastrar();
     }
 
     private  void Menu() {
@@ -57,14 +60,18 @@ public class EntregadorGUI extends  JFrame{
         CriarVisitante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new VisitanteGUI();
 
+                dispose();
             }
         });
 
         CriarCorreio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new CorreioGUI();
 
+                dispose();
             }
         });
     }

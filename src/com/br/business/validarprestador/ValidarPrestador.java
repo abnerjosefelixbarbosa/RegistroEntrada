@@ -1,2 +1,4 @@
-package com.br.business.validarprestador;public class ValidarPrestador {
+package com.br.business.validarprestador;
+
+public class ValidarPrestador {
 }

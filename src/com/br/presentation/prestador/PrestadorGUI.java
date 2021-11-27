@@ -3,7 +3,9 @@ package com.br.presentation.prestador;
 import com.br.model.condomino.Condomino;
 import com.br.model.prestador.Prestador;
 import com.br.model.registro.Registro;
+import com.br.presentation.correio.CorreioGUI;
 import com.br.presentation.entregador.EntregadorGUI;
+import com.br.presentation.visitante.VisitanteGUI;
 
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
@@ -94,15 +96,18 @@ public class PrestadorGUI extends JFrame {
         CriarVisitante.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new VisitanteGUI();
 
-                JOptionPane.showMessageDialog(null, "CriarVisitante");
+                dispose();
             }
         });
 
         CriarCorreio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null, "CriarCorreio");
+                new CorreioGUI();
+
+                dispose();
             }
         });
     }
