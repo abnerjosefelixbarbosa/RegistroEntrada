@@ -7,7 +7,6 @@ import com.br.model.registro.Registro;
 import com.br.presentation.correio.CorreioGUI;
 import com.br.presentation.entregador.EntregadorGUI;
 import com.br.presentation.visitante.VisitanteGUI;
-
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.event.ActionEvent;
@@ -51,32 +50,28 @@ public class PrestadorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Registro Registro = new Registro();
-                    Prestador Prestador1 = new Prestador();
-                    Condomino Condomino1 = new Condomino();
-                    RegistroRule RegistroRule = new RegistroRule();
-                    Date Data = new Date(System.currentTimeMillis());
+                    Registro registro = new Registro();
+                    Prestador prestador1 = new Prestador();
+                    Condomino condomino1 = new Condomino();
+                    RegistroRule registroRule = new RegistroRule();
 
-                    Registro.setDataHora(Data);
-                    Prestador1.setNome(Prestador.getText());
-                    Prestador1.setCPF(CPF.getText());
-                    Prestador1.setEmpresa(Empresa.getText());
-                    Prestador1.setCNPJ(CNPJ.getText());
-                    Prestador1.setAutonomo(Autonomo.isSelected());
-                    Condomino1.setNome(Condomino.getText());
-                    Condomino1.setApartamento(Integer.parseInt(Apartamento.getText()));
-                    Condomino1.setBloco(Bloco.getText());
-                    Condomino1.setCondominio(Condominio.isSelected());
-                    Registro.setPrestador(Prestador1);
-                    Registro.setCondomino(Condomino1);
-                    String Resultado = RegistroRule.CriarPrestador(Registro);
-                    String Resultado1 = RegistroRule.CriarCondomino(Registro);
+                    registro.setDataHora(new Date(System.currentTimeMillis()));
+                    prestador1.setNome(Prestador.getText());
+                    prestador1.setCPF(CPF.getText());
+                    prestador1.setEmpresa(Empresa.getText());
+                    prestador1.setCNPJ(CNPJ.getText());
+                    prestador1.setAutonomo(Autonomo.isSelected());
+                    condomino1.setNome(Condomino.getText());
+                    condomino1.setApartamento(Integer.parseInt(Apartamento.getText()));
+                    condomino1.setBloco(Bloco.getText());
+                    condomino1.setCondominio(Condominio.isSelected());
+                    registro.setPrestador(prestador1);
+                    registro.setCondomino(condomino1);
+                    String resultado = registroRule.CriarPrestadorCondomino(registro);
 
-                    if (!Resultado.equals("")) {
-                        JOptionPane.showMessageDialog(null, Resultado, "Error", 0);
-                    } else if (!Resultado1.equals("")) {
-                        JOptionPane.showMessageDialog(null, Resultado1, "Error", 0);
-                    } else  {
+                    if (!resultado.equals("")) {
+                        JOptionPane.showMessageDialog(null, resultado, "Error", 0);
+                    } else {
                         JOptionPane.showMessageDialog(null, "Prestador cadastrado!", "Mensagem", 1);
                     }
                 } catch (Exception Ex) {

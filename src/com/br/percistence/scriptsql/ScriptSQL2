@@ -72,4 +72,9 @@ FOREIGN KEY(IdRegistro) REFERENCES Registro (Id),
 FOREIGN KEY(IdVisitante) REFERENCES Visitante (Id)
 );
 
-
+SELECT MAX(id) as Id FROM registro;
+INSERT INTO registro (DataHora) VALUES (?);
+INSERT INTO prestador (Id,Nome,CPF,Empresa,CNPJ,Autonomo) VALUES (?,?,?,?,?,?);
+INSERT INTO condomino (Id,Nome,Apartamento,Bloco,Condominio) VALUES (?,?,?,?,?);
+INSERT INTO registroprestador (IdRegistro,IdPrestador) VALUES (?,?);
+INSERT INTO registrocondomino (IdRegistro,IdPrestador) VALUES (?,?);

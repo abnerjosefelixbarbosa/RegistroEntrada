@@ -3,11 +3,11 @@ package com.br.face.registro;
 import com.br.model.registro.Registro;
 
 public interface RegistroFace {
-    public String CriarPrestador(Registro Registro);
-    public String CriarEntregador(Registro Registro);
-    public String CriarVisitante(Registro Registro);
-    public String CriarCorreio(Registro Registro);
-    public String CriarCondomino(Registro Registro);
+    public String CriarPrestador(Registro registro);
+    public String CriarEntregador(Registro registro);
+    public String CriarVisitante(Registro registro);
+    public String CriarCorreio(Registro registro);
+    public String CriarCondomino(Registro registro);
 }
 
 
