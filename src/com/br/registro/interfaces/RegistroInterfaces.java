@@ -1,6 +1,6 @@
-package com.br.registro.interfaces.registrointerfaces;
+package com.br.registro.interfaces;
 
-import com.br.registro.entities.registro.Registro;
+import com.br.registro.model.Registro;
 
 public interface RegistroInterfaces {
     String AdicionarRegistroPrestador(Registro registro);

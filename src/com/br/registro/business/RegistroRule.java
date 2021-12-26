@@ -1,37 +1,51 @@
-package com.br.registro.business.registrorule;
+package com.br.registro.business;
 
-import com.br.registro.business.validarregistro.ValidarRegistro;
-import com.br.registro.interfaces.registrointerfaces.RegistroInterfaces;
-import com.br.registro.entities.registro.Registro;
-import com.br.registro.percistence.registrodao.RegistroDAO;
-
-import java.sql.Date;
+import com.br.registro.interfaces.RegistroInterfaces;
+import com.br.registro.model.Registro;
+import com.br.registro.percistence.RegistroDAO;
 
 public class RegistroRule implements RegistroInterfaces {
-    private RegistroDAO rd = new RegistroDAO();
-    private ValidarRegistro vr = new ValidarRegistro();
-
     @Override
     public String AdicionarRegistroPrestador(Registro registro) {
-        String res = vr.AdicionarRegistroPrestador(registro);
+        RegistroDAO rd = new RegistroDAO();
+        ValidarRegistro vr = new ValidarRegistro();
+        String res = vr.AdicionarRegistroPrestador.Aplicar(registro);
 
-        if (!res.equals("")) res = rd.AdicionarRegistroPrestador(registro);
+        if (res.equals("")) res = rd.AdicionarRegistroPrestador(registro);
 
         return res;
     }
 
     @Override
     public String AdicionarRegistroEntregador(Registro registro) {
-        return null;
+        RegistroDAO rd = new RegistroDAO();
+        ValidarRegistro vr = new ValidarRegistro();
+        String res = vr.AdicionarRegistroEntregador.Aplicar(registro);
+
+        if (res.equals("")) res = rd.AdicionarRegistroEntregador(registro);
+
+        return res;
     }
 
     @Override
     public String AdicionarRegistroVisitante(Registro registro) {
-        return null;
+        RegistroDAO rd = new RegistroDAO();
+        ValidarRegistro vr = new ValidarRegistro();
+        String res = vr.AdicionarRegistroVisitante.Aplicar(registro);
+
+        if (res.equals("")) res = rd.AdicionarRegistroVisitante(registro);
+
+        return res;
     }
 
     @Override
     public String AdicionarRegistroCorreio(Registro registro) {
-        return null;
+        RegistroDAO rd = new RegistroDAO();
+        ValidarRegistro vr = new ValidarRegistro();
+        String res = vr.AdicionarRegistroCorreio.Aplicar(registro);
+
+        if (res.equals("")) res = rd.AdicionarRegistroCorreio(registro);
+
+        return res;
     }
 }

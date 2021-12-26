@@ -1,4 +1,4 @@
-package com.br.registro.entities.condomino;
+package com.br.registro.model;
 
 public class Condomino {
     private final int id;

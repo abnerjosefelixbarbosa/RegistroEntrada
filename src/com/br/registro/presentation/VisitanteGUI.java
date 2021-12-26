@@ -1,45 +1,48 @@
-package com.br.registro.presentation.visitante;
+package com.br.registro.presentation;
 
 //import com.br.registro.business.registro_prestador.RegistroPrestador;
-import com.br.registro.presentation.correio.CorreioGUI;
-import com.br.registro.presentation.entregador.EntregadorGUI;
-import com.br.registro.presentation.prestador.PrestadorGUI;
+
+import com.br.registro.business.RegistroRule;
+import com.br.registro.model.Condomino;
+import com.br.registro.model.Registro;
+import com.br.registro.model.Visitante;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
 
 public class VisitanteGUI extends JFrame {
-    private JMenuBar MenuBar1;
-    private JMenu PrestadorMenu;
-    private JMenu EntregadorMenu;
-    private JMenu VisitanteMenu;
-    private JMenu CorreioMenu;
+    private JMenuBar menuBar1;
+    private JMenu prestadorMenu;
+    private JMenu entregadorMenu;
+    private JMenu visitanteMenu;
+    private JMenu correioMenu;
     private JMenuItem CriarCorreio;
     private JMenuItem CriarVisitante;
     private JMenuItem CriarEntregador;
     private JMenuItem CriarPrestador;
-    private JPanel Panel1;
-    private JButton Cadastrar;
-    private JTextField Visitante;
-    private JTextField Condomino;
-    private JTextField Apartamento;
-    private JTextField Bloco;
-    private JCheckBox Condominio;
+    private JPanel panel1;
+    private JButton cadastrar;
+    private JTextField visitante;
+    private JTextField condomino;
+    private JTextField apartamento;
+    private JTextField bloco;
+    private JCheckBox condominio;
 
     public VisitanteGUI() {
-        setContentPane(Panel1);
+        setContentPane(panel1);
         setTitle("visitante");
         setSize(1900, 1000);
         setDefaultCloseOperation(3);
         setLocationRelativeTo(null);
         setVisible(true);
-        Apartamento.setText("0");
-        Menu();
-        Cadastrar();
+        apartamento.setText("0");
+        Menu.run();
+        Cadastrar.run();
     }
 
-    private void Menu() {
+    private Runnable Menu = () -> {
         CriarPrestador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -75,21 +78,27 @@ public class VisitanteGUI extends JFrame {
                 dispose();
             }
         });
-    }
+    };
 
-    private void Cadastrar() {
-        Cadastrar.addActionListener(new ActionListener() {
+    private Runnable Cadastrar = () -> {
+        cadastrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
+                    Visitante v = new Visitante(0,visitante.getText());
+                    Condomino c = new Condomino(0,condomino.getText(),Integer.parseInt(apartamento.getText()),bloco.getText(),condominio.isSelected());
+                    Registro r = new Registro(0,new Date(System.currentTimeMillis()),null,null,null,c,v);
+                    RegistroRule rr = new RegistroRule();
+                    String res = rr.AdicionarRegistroVisitante(r);
 
+                    JOptionPane.showMessageDialog(null,res);
                 } catch (Exception Ex) {
                     JOptionPane.showMessageDialog(null, Ex.getMessage(), "Error", 0);
-
+                    apartamento.setText("0");
                 }
             }
         });
-    }
+    };
 
     public static void main(String[] args) {
         new VisitanteGUI();

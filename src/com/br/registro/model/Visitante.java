@@ -1,4 +1,4 @@
-package com.br.registro.entities.visitante;
+package com.br.registro.model;
 
 public class Visitante {
     private final int id;

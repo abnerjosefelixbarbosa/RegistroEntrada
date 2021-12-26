@@ -1,29 +1,32 @@
-package com.br.registro.percistence.banco;
+package com.br.registro.percistence;
 
 import com.mysql.jdbc.Connection;
 import java.sql.*;
 
 public class Banco {
-    private Connection con;
+    public static java.sql.Connection getConnection() {
+        Connection con = null;
 
-    public Connection getConnection() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/registroentrada", "root", "");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/registroentrada", "root", "");
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
 
-        return this.con;
+        return con;
     }
 
-    public boolean TesteConexao() {
+    public static boolean getTeste() {
+        Connection con = null;
+        boolean res = false;
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            this.con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/registroentrada", "root", "");
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
+            Class.forName("com.mysql.jdbc.Driver");
+            con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/registroentrada", "root", "");
+            res = true;
+        } catch (Exception ex) {}
+
+        return res;
     }
 }

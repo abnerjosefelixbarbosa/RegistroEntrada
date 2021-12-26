@@ -1,4 +1,4 @@
-package com.br.registro.entities.entregador;
+package com.br.registro.model;
 
 public class Entregador {
     private final int id;

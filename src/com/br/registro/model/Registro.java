@@ -1,10 +1,4 @@
-package com.br.registro.entities.registro;
-
-import com.br.registro.entities.condomino.Condomino;
-import com.br.registro.entities.correio.Correio;
-import com.br.registro.entities.entregador.Entregador;
-import com.br.registro.entities.prestador.Prestador;
-import com.br.registro.entities.visitante.Visitante;
+package com.br.registro.model;
 
 import java.util.Date;
 

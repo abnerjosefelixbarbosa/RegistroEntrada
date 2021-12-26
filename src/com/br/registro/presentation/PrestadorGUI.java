@@ -1,13 +1,16 @@
-package com.br.registro.presentation.prestador;
+package com.br.registro.presentation;
 
-import com.br.registro.presentation.correio.CorreioGUI;
-import com.br.registro.presentation.entregador.EntregadorGUI;
-import com.br.registro.presentation.visitante.VisitanteGUI;
+import com.br.registro.business.RegistroRule;
+import com.br.registro.model.Condomino;
+import com.br.registro.model.Prestador;
+import com.br.registro.model.Registro;
+
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
+import java.util.Date;
 
 public class PrestadorGUI extends JFrame {
 
@@ -35,41 +38,16 @@ public class PrestadorGUI extends JFrame {
         setLocationRelativeTo(null);
         setVisible(true);
         apartamento.setText("0");
-        Menu();
-        Cadastrar();
-        Mascara();
+        Menu.run();
+        Cadastrar.run();
+        Mascara.run();
     }
 
-    private void Cadastrar() {
-        cadastrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-
-                } catch (Exception Ex) {
-                    JOptionPane.showMessageDialog(null, Ex.getMessage(), "Error", 0);
-
-                }
-            }
-        });
-    }
-
-    private void LimparCampo() {
-        prestador.setText("");
-        cpf.setText("");
-        empresa.setText("");
-        cnpj.setText("");
-        condomino.setText("");
-        apartamento.setText("0");
-        bloco.setText("");
-    }
-
-    private void Menu() {
+    private Runnable Menu = () -> {
         criarPrestador.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new PrestadorGUI();
-
                 dispose();
             }
         });
@@ -78,7 +56,6 @@ public class PrestadorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new EntregadorGUI();
-
                 dispose();
             }
         });
@@ -87,7 +64,6 @@ public class PrestadorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new VisitanteGUI();
-
                 dispose();
             }
         });
@@ -96,13 +72,12 @@ public class PrestadorGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new CorreioGUI();
-
                 dispose();
             }
         });
-    }
+    };
 
-    private void Mascara() {
+    private Runnable Mascara = () -> {
         try {
             MaskFormatter cpf = new MaskFormatter("###.###.###-##");
             MaskFormatter cnpj = new MaskFormatter("##.###.###/####-##");
@@ -111,9 +86,27 @@ public class PrestadorGUI extends JFrame {
         } catch (ParseException Ex) {
             Ex.printStackTrace();
         }
-    }
+    };
 
-    public static void main(String[] args) {
-        new PrestadorGUI();
-    }
+    private Runnable Cadastrar = () -> {
+        cadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    Prestador p = new Prestador(0,prestador.getText(),cpf.getText(),empresa.getText(),cnpj.getText(),autonomo.isSelected());
+                    Condomino c = new Condomino(0,condomino.getText(),Integer.parseInt(apartamento.getText()),bloco.getText(),condominio.isSelected());
+                    Registro r = new Registro(0,new Date(System.currentTimeMillis()),null,p,null,c,null);
+                    RegistroRule rr = new RegistroRule();
+                    String res = rr.AdicionarRegistroPrestador(r);
+
+                    JOptionPane.showMessageDialog(null,res);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null,ex.getMessage(),"Error",0);
+                    apartamento.setText("0");
+                }
+            }
+        });
+    };
+
+    public static void main(String[] args) {new PrestadorGUI();}
 }

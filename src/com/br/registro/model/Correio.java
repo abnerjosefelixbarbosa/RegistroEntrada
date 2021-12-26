@@ -1,4 +1,4 @@
-package com.br.registro.entities.correio;
+package com.br.registro.model;
 
 public class Correio {
     private int id;

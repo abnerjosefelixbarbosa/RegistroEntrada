@@ -1,4 +1,4 @@
-package com.br.registro.entities.prestador;
+package com.br.registro.model;
 
 public class Prestador {
     private final int id;

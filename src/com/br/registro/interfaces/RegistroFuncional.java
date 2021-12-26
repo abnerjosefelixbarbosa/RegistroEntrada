@@ -3,6 +3,6 @@ package com.br.registro.interfaces;
 import com.br.registro.model.Registro;
 
 @FunctionalInterface
-public interface Registro1 {
+public interface RegistroFuncional {
     String Aplicar(Registro registro);
 }
