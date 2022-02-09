@@ -18,7 +18,7 @@ O projeto RegistroEntrada tem a finalidade de incerrir um dados da entrada e sai
 
 # Execução do projeto
 
-Java 8
+Java 16
 
 ```java
 # clonar repositório
